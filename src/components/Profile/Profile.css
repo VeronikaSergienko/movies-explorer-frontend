@@ -1,0 +1,140 @@
+.profile {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 70px 0;
+}
+
+.profile-form {
+    width: 410px;
+}
+
+.profile-form__title {
+    text-align: center;
+    font-size: 24px;
+    line-height: 29px;
+    font-weight: 500;
+    color: #000000;
+    margin: 0 0 50px 0;
+}
+
+.profile-form__input-conteiner {
+    box-sizing: border-box;
+    border: none;
+    border-bottom: 1px solid #E8E8E8;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 16px 0;
+}
+
+.profile-form__name-input {
+    font-size: 11px;
+    line-height: 13px;
+    margin: 0;
+    padding: 0;
+    color: #000;
+}
+
+.profile-form__input-conteiner:last-child {
+    border-bottom: none;
+}
+
+.profile-form__input {
+    color: #000;
+    background-color: #fff;
+    margin: 0;
+    padding: 0;
+    border: none;
+    font-size: 11px;
+    line-height: 13px;
+    font-weight: 500;
+    text-align: end;
+}
+
+.profile-form__input:focus {
+    outline: none;
+}
+
+
+.profile-form__login-link:hover {
+    opacity: 0.6;
+    cursor: pointer;
+}
+
+.profile-form__input-error {
+    font-size: 10px;
+    line-height: 12px;
+}
+
+.profile-form__save-button {
+    box-sizing: border-box;
+    background-color: #FFF;
+    border: none;
+    margin: 220px auto 16px;
+    padding: 0;
+    font-size: 13px;
+    line-height: 16px;
+    font-weight: 400px;
+}
+
+.profile-form__save-button:hover {
+    opacity: 0.85;
+    cursor: pointer;
+}
+
+.profile-form__login-link {
+    text-decoration: none;
+    margin: 0;
+    color: #EE3465;
+    font-size: 13px;
+    line-height: 16px;
+    font-weight: 500;
+}
+
+.profile-form__signin {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+}
+
+.profile-form__text {
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+    line-height: 17px;
+}
+
+@media screen and (max-width: 1046px) {
+    .profile {
+        margin-top: 236px;
+        margin-bottom: 269px;
+    }
+    .profile-form__save-button {
+        margin-top: 210px;
+    }
+}
+
+@media screen and (max-width: 568px) {
+    .profile {
+        margin-top: 70px;
+        margin-bottom: 40px;
+    }
+    .profile-form {
+        width: 260px;
+    }
+    .profile-form__save-button {
+        margin-top: 379px;
+        font-size: 12px;
+        line-height: 15px;
+    }
+    .profile-form__login-link {
+        font-size: 12px;
+        line-height: 15px;
+    }
+}

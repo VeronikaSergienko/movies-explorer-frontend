@@ -1,0 +1,100 @@
+.about-project {
+    margin: 110px 70px;
+    color: #000000;
+    display: flex;
+    flex-direction: column;
+}
+
+.about-project__title {
+    font-size: 22px;
+    line-height: 27px;
+    font-weight: 400;
+    text-align: left;
+    padding-bottom: 23px;
+    border-bottom: solid #000000 1px;
+    margin: 0;
+}
+.about-project__info {
+    padding-top: 70px;
+    display: flex;
+    flex-direction: row;
+}
+.about-project__conteiner-text {
+    margin: 0;
+    text-align: left;
+    margin-right: 40px;
+}
+.about-project__conteiner-text:last-child {
+    margin-right: 0;
+}
+.about-project__text-title {
+    font-size: 20px;
+    line-height: 24px;
+}
+.about-project__text {
+    font-size: 14px;
+    line-height: 20px;
+}
+.about-project__conteiner-schema {
+    height: 36px;
+    width: 100%;
+    padding: 0;
+    margin-top: 110px;
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    font-size: 14px;
+    line-height: 17px;
+}
+.about-project__back-end {
+    margin: 0;
+    padding: 9px 14px;
+    background-color: #2BE080;
+    text-align: center;
+}
+.about-project__front-end {
+    margin: 0;
+    padding: 9px 14px;
+    background-color: #F2F2F2;
+    text-align: center;
+}
+.about-project__text-not-background {
+    background-color: #FFFFFF;
+}
+
+@media screen and (max-width: 1046px) {
+    .about-project {
+        margin: 90px 50px;
+    }
+    .about-project__text {
+        font-size: 12px;
+        line-height: 18px;
+    }
+}
+
+@media screen and (max-width: 568px) {
+    .about-project {
+        margin: 70px 18px;
+    }
+    .about-project__info {
+        padding-top: 60px;
+        flex-direction: column;
+    }
+    .about-project__text-title {
+        font-size: 18px;
+        line-height: 22px;
+    }
+    .about-project__text {
+        font-size: 11px;
+        line-height: 16px;
+    }
+    .about-project__conteiner-schema {
+        font-size: 11px;
+        line-height: 13px;
+    }
+    .about-project__front-end {
+        padding: 11px 0;
+    }
+    .about-project__back-end {
+        padding: 11px 0;
+    }
+}

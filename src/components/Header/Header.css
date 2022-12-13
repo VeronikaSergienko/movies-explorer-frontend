@@ -1,0 +1,38 @@
+.header {
+    height: 38px;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+    padding: 18px 70px;
+  }
+
+.header__logo {
+    width: 38px;
+    height: 38px;
+    margin: 0;
+    padding: 0;
+    background-image: url(../../images/logo.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    border: none;
+}
+
+.header__conteiner {
+    box-sizing: border-box;
+    height: 38px;
+    margin: 0;
+    padding: 0;
+    width: calc(100% - 38px);
+}
+
+@media screen and (max-width: 1046px) {
+    .header {
+        padding: 18px 30px;
+    }
+}
+
+@media screen and (max-width: 568px) {
+    .header {
+        padding: 18px 14px;
+    }
+}
