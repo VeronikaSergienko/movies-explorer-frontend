@@ -1,12 +1,15 @@
 .portfolio {
     font-size: 18px;
     line-height: 20px;
-    margin: 100px 70px;
+    margin: 0px 70px 125px;
     text-align: left;
 }
 .portfolio__title {
     color: #A0A0A0;
     font-weight: 400;
+    margin: 0px 0px 30px;
+    font-size: 18px;
+    line-height: 20px;
 }
 .portfolio__links {
     list-style: none;
@@ -29,6 +32,10 @@
     font-weight: 400;
     cursor: pointer;
     color: #000000;
+}
+.portfolio__link:hover {
+    opacity: 0.6;
+    cursor: pointer;
 }
 .portfolio__link-arrow {
     height: 20px;
@@ -55,10 +62,13 @@
     }
     .portfolio__link {
         font-size: 18px;
-        line-height: 20px;
+        line-height: 28px;
     }
     .portfolio__link-arrow {
-        height: 18px;
+        height: 28px;
         width: 18px;
+        margin-top: 0;
+        background-size: 10px 10px;
+        background-position: center;
     }
 }

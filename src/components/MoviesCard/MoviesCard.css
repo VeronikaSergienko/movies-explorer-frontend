@@ -32,7 +32,7 @@
 .element__save-button {
     width: 30px;
     height: 30px;
-    background-image: url(../../images/movies-save-active.svg);
+    background-image: url(../../images/movies-save-inactive.svg);
     background-size: 30px 30px;
     background-position: center;
     background-repeat: no-repeat;
@@ -41,6 +41,9 @@
     background-color: #ffffff;
     margin: 19px 14px;
     padding: 0;
+}
+.element__save-button_active {
+    background-image: url(../../images/movies-save-active.svg);
 }
 .element__save-button:hover {
     opacity: 0.6;

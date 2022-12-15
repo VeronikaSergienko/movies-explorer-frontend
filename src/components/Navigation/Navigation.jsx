@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import "./Navigation.css";
 
 function Navigation({ loggedIn }) {
-  const [isMenuOpened, setIsMenuOpened] = useState(true);
+  const [isMenuOpened, setIsMenuOpened] = useState(false);
 
   function openMenu() {
     setIsMenuOpened(true);

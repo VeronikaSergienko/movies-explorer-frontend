@@ -122,10 +122,13 @@
     width: 100px;
     text-decoration: none;
     color: #000000;
-    font-size: 12px;
-    line-height: 16px;
+    font-size: 13px;
+    line-height: 18px;
     font-weight: 500;
     margin: 0 0 0 16px;
+}
+.navigation_link:hover {
+    opacity: 0.6;
     cursor: pointer;
 }
 .navigation__green-button {
@@ -135,16 +138,29 @@
     padding: 8px 20px;
     margin: 0 0 0 30px;
 }
+.navigation__green-button:hover {
+    opacity: 0.5;
+    cursor: pointer;
+}
 .navigation__grey-button {
     background-color: #F9F9F9;
     border-radius: 20px;
     width: 100px;
     height: 32px;
+    display: flex;
     text-align: center;
+    justify-content: center;
+    flex-direction: column;
     margin: 0 0 0 30px;
+}
+.navigation__grey-button:hover {
+    opacity: 0.6;
+    cursor: pointer;
 }
 .navigation__text-grey-button {
     margin: 0;
+    font-size: 14px;
+    line-height: 16px;
 }
 
 @media screen and (max-width: 1046px) {

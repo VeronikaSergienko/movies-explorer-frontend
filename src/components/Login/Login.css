@@ -52,12 +52,16 @@
 
 .form__input:focus {
     outline: none;
+    color: #2BE080;
 }
 
 .form__input-conteiner {
     box-sizing: border-box;
     border-bottom: 1px solid #E8E8E8;
     margin-top: 24px;
+}
+.form__input-conteiner:focus {
+    border-bottom: 1px solid #2BE080;
 }
 
 .form__input-conteiner:first-child {

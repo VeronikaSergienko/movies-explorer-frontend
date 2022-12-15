@@ -44,7 +44,7 @@ function Profile({ onProfile }) {
             </div>
             <span className="profile-form__input-error"></span>
           </div>
-          <div className="profile-form__conteiner">
+          <div className="profile-form__conteiner profile-form__conteiner_type-without-a-line">
             <div className="profile-form__input-conteiner">
             <p className="profile-form__name-input">E-mail</p>
               <input
@@ -57,7 +57,6 @@ function Profile({ onProfile }) {
                 maxLength="30"
                 required
               />
-
             </div>
             <span className="profile-form__input-error"></span>
           </div>

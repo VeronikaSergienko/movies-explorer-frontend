@@ -5,7 +5,7 @@ import './MoviesCard.css';
 function MoviesCard(props) {
   const currentUser = React.useContext(CurrentUserContext);
 //   const isSaved = props.movie.saved.some((i) => i._id === currentUser._id);
-    const isSaved = true;
+    const isSaved = false;
   const movieSaveButtonClassName = `element__save-button ${
     isSaved ? "element__save-button_active" : ""
   }`;

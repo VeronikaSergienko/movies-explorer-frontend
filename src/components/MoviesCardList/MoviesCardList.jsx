@@ -68,6 +68,7 @@ function MoviesCardList(props) {
         );
       })}
       </div>
+      <button className="elements__more-button">Ещё</button>
   </section>
   );
 }

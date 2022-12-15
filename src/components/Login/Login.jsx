@@ -16,7 +16,6 @@ function Login({ onLogin }) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    // Передаём значения управляемых компонентов во внешний обработчик
     onLogin({
       email,
       password,

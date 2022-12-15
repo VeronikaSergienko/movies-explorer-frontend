@@ -16,6 +16,10 @@
     background-position: center;
     border: none;
 }
+.header__logo:hover {
+    opacity: 0.6;
+    cursor: pointer;
+}
 
 .header__conteiner {
     box-sizing: border-box;

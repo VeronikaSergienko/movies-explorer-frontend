@@ -1,6 +1,6 @@
 import React from "react";
-import { useEffect, useState } from "react";
-import { Route, Switch, Redirect, useHistory } from "react-router-dom";
+import { useState } from "react";
+import { Route, Switch } from "react-router-dom";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext.js";
 import './App.css';
 import Header from '../Header/Header';
@@ -15,9 +15,6 @@ import PageNotFound from '../PageNotFound/PageNotFound';
 
 function App() {
   const [currentUser, setCurrentUser] = useState({});
-  const onClickHeader = () => {
-    console.log('onClickHeader');
-  };
 
   const handleLogin = () => {
     console.log('handleLogin');

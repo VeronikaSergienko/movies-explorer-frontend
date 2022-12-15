@@ -39,6 +39,10 @@
     line-height: 16px;
     color: #000000;
 }
+.footer__link:hover {
+    opacity: 0.6;
+    cursor: pointer;
+}
 
 @media screen and (max-width: 1046px) {
     .footer {
