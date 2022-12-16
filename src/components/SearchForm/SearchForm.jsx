@@ -21,7 +21,6 @@ function SearchForm({ onSearch }) {
         <div className="search__conteiner-form">
             <form className="search-form" onSubmit={handleSubmit}>
                 <div className="search-form__input-conteiner">
-                    <div alt="Лупа" className="search-form__icon"></div>
                     <input
                     type="text"
                     placeholder="Фильм"
@@ -38,8 +37,8 @@ function SearchForm({ onSearch }) {
             </form>
         </div>
         <div className="search__conteiner-checkbox">
-          <button className="search__checkbox-smalltumb"></button>
           <p className="search__checkbox-name">Короткометражки</p>
+          <button className="search__checkbox-smalltumb"></button>
         </div>
       </div>
     </div>

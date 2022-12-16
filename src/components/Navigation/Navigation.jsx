@@ -42,7 +42,7 @@ function Navigation({ loggedIn }) {
       <nav>
         <ul className="navigation__not-logged-in">
           <li><Link to='/sign-up' className="navigation_link">Регистрация</Link></li>
-          <li><Link to='/sign-in' className="navigation_link navigation__green-button">Войти</Link></li>
+          <li><Link to='/sign-in' className="navigation_link navigation__blue-button">Войти</Link></li>
         </ul>
       </nav>
       )}

@@ -20,25 +20,23 @@ function MoviesCard(props) {
 
   return (
     <article className="element" id="element">
-      <div className="element__info-conteiner">
-        <div className="element__text-conteiner">
-          <h2 className="element__text">{props.nameRU}</h2>
-          <p className="element__duration">{props.duration}</p>
-        </div>
-        <div className="element__save-conteiner">
-          <button
-            type="button"
-            className={movieSaveButtonClassName}
-            onClick={() => handleSaveClick()}
-          ></button>
-        </div>
-      </div>
       <img
         className="element__image"
         src={`${props.image}`}
         onClick={() => handleClick()}
         alt={`${props.nameRU}`}
       />
+      <div className="element__info-conteiner">
+        <div className="element__text-conteiner">
+          <h2 className="element__text">{props.nameRU}</h2>
+          <button
+            type="button"
+            className={movieSaveButtonClassName}
+            onClick={() => handleSaveClick()}
+          ></button>
+        </div>
+        <p className="element__duration">{props.duration}</p>
+      </div>
     </article>
   );
 }
