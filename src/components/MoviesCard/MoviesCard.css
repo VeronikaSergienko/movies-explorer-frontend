@@ -23,8 +23,8 @@
     font-size: 11px;
     line-height: 13px;
     font-weight: 400;
-    margin: 9px 0 0 0;
-    padding: 0;
+    margin: 0;
+    padding-top: 6px;
     text-align: start;
     color: #A0A0A0;
     border-top: solid 1px rgba(232, 232, 232, 1);
@@ -43,6 +43,12 @@
 }
 .element__save-button_active {
     background-image: url(../../images/movies-save-active.svg);
+}
+.element__save-button_delete_my_movies {
+    background-image: none;
+}
+.element__save-button_delete_my_movies:hover {
+    background-image: url(../../images/movies-button-delete.svg);
 }
 .element__save-button:hover {
     opacity: 0.6;
@@ -68,5 +74,8 @@
     }
     .element__image {
         height: 168px;
+    }
+    .element__save-button_delete_my_movies {
+        background-image: url(../../images/movies-button-delete.svg);
     }
 }

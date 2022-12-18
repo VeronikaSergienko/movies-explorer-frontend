@@ -52,6 +52,7 @@ function Register({ onRegister }) {
             <input
               type="e-mail"
               value={email}
+              pattern="https?:\/\/[\w/?.&-=]+$"
               onChange={handleChangeEmail}
               className="form__input"
               minLength="2"

@@ -13,28 +13,28 @@ const array = [
     {
         duration: '1ч 47мин',
         image: "https://e-tex24.ru/wp-content/uploads/2021/12/b4fb6a4a7ecb2476f852a7fe37c43bc5.jpeg",
-        _id: '63739f80f55210c9ab32a776',
+        _id: '63739f80f55210c9ab32a774',
         nameRU: '33 слова о дизайне',
         owner: '63739f56f55210c9ab32a772'
     },
     {
       duration: '1ч 47мин',
       image: "https://e-tex24.ru/wp-content/uploads/2021/12/b4fb6a4a7ecb2476f852a7fe37c43bc5.jpeg",
-      _id: '63739f80f55210c9ab32a776',
+      _id: '63739f80f55210c9ab32a773',
       nameRU: '33 слова о дизайне',
       owner: '63739f56f55210c9ab32a772'
   },
   {
     duration: '1ч 47мин',
     image: "https://e-tex24.ru/wp-content/uploads/2021/12/b4fb6a4a7ecb2476f852a7fe37c43bc5.jpeg",
-    _id: '63739f80f55210c9ab32a776',
+    _id: '63739f80f55210c9ab32a772',
     nameRU: '33 слова о дизайне',
     owner: '63739f56f55210c9ab32a772'
   },
   {
     duration: '1ч 47мин',
     image: "https://e-tex24.ru/wp-content/uploads/2021/12/b4fb6a4a7ecb2476f852a7fe37c43bc5.jpeg",
-    _id: '63739f80f55210c9ab32a776',
+    _id: '63739f80f55210c9ab32a771',
     nameRU: '33 слова о дизайне',
     owner: '63739f56f55210c9ab32a772'
   }

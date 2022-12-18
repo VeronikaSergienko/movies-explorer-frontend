@@ -51,6 +51,7 @@ function Profile({ onProfile }) {
                 type="e-mail"
                 placeholder="E-mail"
                 value={email}
+                pattern="https?:\/\/[\w/?.&-=]+$"
                 onChange={handleChangeEmail}
                 className="profile-form__input"
                 minLength="2"

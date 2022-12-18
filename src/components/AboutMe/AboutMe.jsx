@@ -8,10 +8,10 @@ function AboutMe() {
       <h2 className='about-project__title'>Студент</h2>
       <div className='about-me__conteiner'>
         <div className='about-me__info'>
-            <h2 className='about-me__name'>Виталий</h2>
-            <h3 className='about-me__major'>Фронтенд-разработчик, 30 лет</h3>
-            <p className='about-me__about'>Я родился и живу в Саратове, закончил факультет экономики СГУ. У меня есть жена и дочь. Я люблю слушать музыку, а ещё увлекаюсь бегом. Недавно начал кодить. С 2015 года работал в компании «СКБ Контур». После того, как прошёл курс по веб-разработке, начал заниматься фриланс-заказами и ушёл с постоянной работы.</p>
-            <a className='about-me__link' href='#'>Github</a>
+            <h2 className='about-me__name'>Вероника</h2>
+            <h3 className='about-me__major'>Фронтенд-разработчик, 31 год</h3>
+            <p className='about-me__about'>Я родилась и живу в Омске, закончила факультет экономики ОМГАУ им.Столыпина. У меня есть муж и две дочери. Я люблю слушать музыку, готовить. Недавно начала кодить. После того, как пройду курс по веб-разработки, начну заниматься фриланс-заказами и искать работу.</p>
+            <a className='about-me__link' href='https://github.com/VeronikaSergienko' target="blank" >Github</a>
         </div>
         <img src={Photo} alt="Фотография студента" className='about-me__photo' />
       </div>

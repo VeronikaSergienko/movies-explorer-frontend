@@ -3,6 +3,7 @@ import './SearchForm.css';
 
 function SearchForm({ onSearch }) {
     const [movieName, setMovieName] = useState("");
+    const [isShortFilms, setIsShortFilms] = useState(false);
   
     function handleChangeMovieName(e) {
         setMovieName(e.target.value);
@@ -10,11 +11,15 @@ function SearchForm({ onSearch }) {
   
     function handleSubmit(e) {
       e.preventDefault();
-      // Передаём значения управляемых компонентов во внешний обработчик
       onSearch({
         movieName,
       });
     }
+
+    function toggleCheckbox() {
+      setIsShortFilms(!isShortFilms);
+    };
+    
   return (
     <div className="search">
       <div className="search-box" >
@@ -38,7 +43,7 @@ function SearchForm({ onSearch }) {
         </div>
         <div className="search__conteiner-checkbox">
           <p className="search__checkbox-name">Короткометражки</p>
-          <button className="search__checkbox-smalltumb"></button>
+          <button className={`search__checkbox-smalltumb ${isShortFilms ? "" : "search__checkbox-smalltumb_type_off"}`} onClick={toggleCheckbox} ></button>
         </div>
       </div>
     </div>
