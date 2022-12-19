@@ -1,0 +1,207 @@
+.navigation {
+    height: 36px;
+    width: 100%;
+}
+.navigation__menu {
+    position: relative;
+}
+.navigation__clouse-button {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    width: 22px;
+    height: 22px;
+    padding: 0;
+    background: none;
+    background-image: url(../../images/clouse-button.svg);
+    background-position: center;
+    background-size: cover;
+    object-fit: contain;
+    box-shadow: none;
+    border: none;
+    z-index: 3;
+}
+.navigation__clouse-button:hover {
+    opacity: 0.6;
+    cursor: pointer;
+}
+.navigation__button-menu {
+    margin: 0;
+    padding: 0;
+    width: 40px;
+    height: 43px;
+    background-image: url(../../images/navigation-menu.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: #FFFFFF;
+    color: #000000;
+    border: none;
+    display: none;
+}
+.navigation__button-menu:hover {
+    cursor: pointer;
+    opacity: 0.6;
+}
+.navigation__cover {
+    box-sizing: border-box;
+    background-color: rgba(0, 0, 0, 0.3);
+    position: fixed;
+    /* height: 1024px; */
+    width: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: none;
+    justify-content: flex-start;
+    align-items: flex-start;
+    transition: visibility .3s linear,opacity .3s linear;
+    z-index: 1;
+}
+.navigation__cover_active {
+    display: flex;
+}
+.navigation__menu-list {
+    position: fixed;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 159px 90px 90px;
+    width: 340px;
+    height: calc(100% - 249px);
+    background-color: #FFFFFF;
+    z-index: 2;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 2;
+    display: none;
+}
+.navigation__menu-list_active {
+    display: flex;
+}
+
+.navigation__conteiner-list-links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-rows: repeat(3, auto);
+    row-gap: 28px;
+}
+.navigation_list-link {
+    text-decoration: none;
+    color: #000000;
+    font-size: 18px;
+    line-height: 22px;
+    font-weight: 500;
+    margin: 0 auto;
+}
+.navigation_list-link_active {
+    border-bottom: solid #000000 2px;
+}
+.navigation_list-link:hover {
+    opacity: 0.6;
+    cursor: pointer;
+}
+.navigation__not-logged-in {
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    list-style: none;
+    box-sizing: border-box;
+    align-items: center;
+}
+.navigation__conteiner-links {
+    list-style: none;
+    margin: 0 20px 0 0;
+}
+.navigation__logged-in {
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    box-sizing: border-box;
+    justify-content: end;
+    align-items: center;
+}
+.navigation_link {
+    width: 100px;
+    text-decoration: none;
+    color: #000000;
+    font-size: 13px;
+    line-height: 18px;
+    font-weight: 500;
+    margin: 0 0 0 16px;
+}
+.navigation_link:hover {
+    opacity: 0.6;
+    cursor: pointer;
+}
+.navigation__blue-button {
+    background-color: rgba(52, 86, 243, 1);
+    border-radius: 3px;
+    color: #FFFFFF;
+    padding: 8px 20px;
+    margin: 0 0 0 30px;
+}
+.navigation__blue-button:hover {
+    opacity: 0.5;
+    cursor: pointer;
+}
+.navigation__grey-button {
+    background-color: #F9F9F9;
+    border-radius: 20px;
+    width: 100px;
+    height: 32px;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    flex-direction: column;
+    margin: 0 0 0 30px;
+}
+.navigation__grey-button:hover {
+    opacity: 0.6;
+    cursor: pointer;
+}
+.navigation__text-grey-button {
+    margin: 0;
+    font-size: 14px;
+    line-height: 16px;
+}
+
+@media screen and (max-width: 1046px) {
+    .navigation__logged-in {
+        display: none;
+    }
+    .navigation__button-menu {
+        display: flex;
+        margin-left: calc(100% - 40px);
+    }
+    .navigation__menu-list {
+        /* height: 775px; */
+    }
+}
+
+@media screen and (max-width: 568px) {
+    .navigation__clouse-button {
+        top: 20px;
+        right: 20px;
+    }
+    .navigation__menu-list {
+        padding: 144px 10px 46px;
+        width: 100vw;
+        height: calc(100% - 190px);
+        /* height: 590px; */
+    }
+    .navigation__conteiner-list-links {
+        row-gap: 24px;
+    }
+    .navigation__blue-button {
+        padding: 5px 12px;
+        margin: 0 0 0 14px;
+    }
+    .navigation_link {
+        font-size: 10px;
+        line-height: 16px;
+    }
+}

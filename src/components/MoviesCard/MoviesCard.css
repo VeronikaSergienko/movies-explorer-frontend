@@ -1,0 +1,81 @@
+.element {
+    max-width: 270px;
+}
+.element__info-conteiner {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.element__text-conteiner {
+    margin: 14px 0 29px;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+}
+.element__text {
+    font-size: 13px;
+    line-height: 16px;
+    font-weight: 500;
+    margin: 0;
+    padding: 0;
+}
+.element__duration {
+    font-size: 11px;
+    line-height: 13px;
+    font-weight: 400;
+    margin: 0;
+    padding-top: 6px;
+    text-align: start;
+    color: #A0A0A0;
+    border-top: solid 1px rgba(232, 232, 232, 1);
+}
+.element__save-button {
+    width: 24px;
+    height: 24px;
+    background-image: url(../../images/movies-save-inactive.svg);
+    background-size: 24px 24px;
+    background-position: center;
+    background-repeat: no-repeat;
+    box-shadow: none;
+    border: none;
+    background-color: #ffffff;
+    padding: 0;
+}
+.element__save-button_active {
+    background-image: url(../../images/movies-save-active.svg);
+}
+.element__save-button_delete_my_movies {
+    background-image: none;
+}
+.element__save-button_delete_my_movies:hover {
+    background-image: url(../../images/movies-button-delete.svg);
+}
+.element__save-button:hover {
+    opacity: 0.6;
+    cursor: pointer;
+}
+.element__image {
+    width: 100%;
+    height: 151px;
+}
+@media screen and (max-width: 1046px) {
+    .element {
+        max-width: 339px;
+    }
+    .element__image {
+        height: 190px;
+    }
+}
+
+@media screen and (max-width: 568px) {
+    .element {
+        max-width: 300px;
+        margin: 0 auto;
+    }
+    .element__image {
+        height: 168px;
+    }
+    .element__save-button_delete_my_movies {
+        background-image: url(../../images/movies-button-delete.svg);
+    }
+}
