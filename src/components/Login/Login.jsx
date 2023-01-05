@@ -32,7 +32,7 @@ function Login({ onLogin }) {
             <input
               type="e-mail"
               value={email}
-              pattern="https?:\/\/[\w/?.&-=]+$"
+              // pattern="https?:\/\/[\w/?.&-=]+$"
               onChange={handleChangeEmail}
               className="form__input"
               minLength="2"

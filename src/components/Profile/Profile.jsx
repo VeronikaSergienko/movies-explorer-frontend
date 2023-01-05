@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import CurrentUserContext from '../../contexts/CurrentUserContext';
+import { CurrentUserContext } from "../../contexts/CurrentUserContext.js";
 import './Profile.css';
 import '../Login/Login.css';
 
-function Profile({ onProfile }) {
-  // const currentUser = React.useContext(CurrentUserContext);
+function Profile({ onProfile, onSignOut }) {
+  const currentUser = React.useContext(CurrentUserContext);
   const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
 
@@ -18,22 +18,21 @@ function Profile({ onProfile }) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    // Передаём значения управляемых компонентов во внешний обработчик
     onProfile({
-      userName,
+      name: userName,
       email,
     });
   }
   return (
       <div className="profile">
         <form className="profile-form" onSubmit={handleSubmit}>
-          <h2 className="profile-form__title">Привет, Виталий!</h2>
+          <h2 className="profile-form__title">{`Привет, ${currentUser.name}!`}</h2>
           <div className="profile-form__conteiner">
             <div className="profile-form__input-conteiner">
               <p className="profile-form__name-input">Имя</p>
               <input
                 type="text"
-                placeholder="Name"
+                placeholder={currentUser.name}
                 value={userName}
                 onChange={handleChangeName}
                 className="profile-form__input"
@@ -49,9 +48,9 @@ function Profile({ onProfile }) {
             <p className="profile-form__name-input">E-mail</p>
               <input
                 type="e-mail"
-                placeholder="E-mail"
+                placeholder={currentUser.email}
                 value={email}
-                pattern="https?:\/\/[\w/?.&-=]+$"
+                // pattern="https?:\/\/[\w/?.&-=]+$"
                 onChange={handleChangeEmail}
                 className="profile-form__input"
                 minLength="2"
@@ -66,7 +65,7 @@ function Profile({ onProfile }) {
           </button>
         </form>
         <div className="profile-form__signin">
-          <Link to="/sign-in" className="profile-form__login-link">
+          <Link to="/sign-in" className="profile-form__login-link" onClick={onSignOut} >
             Выйти из аккаунта
           </Link>
         </div>

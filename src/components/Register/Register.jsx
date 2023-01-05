@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import headerLogo from "../../images/logo.svg";
 import '../Login/Login.css';
 import '../Header/Header.css';
 
@@ -21,9 +20,8 @@ function Register({ onRegister }) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    // Передаём значения управляемых компонентов во внешний обработчик
     onRegister({
-      userName,
+      name: userName,
       email,
       password,
     });
@@ -52,7 +50,7 @@ function Register({ onRegister }) {
             <input
               type="e-mail"
               value={email}
-              pattern="https?:\/\/[\w/?.&-=]+$"
+              // pattern="https?:\/\/[\w/?.&-=]+$"
               onChange={handleChangeEmail}
               className="form__input"
               minLength="2"

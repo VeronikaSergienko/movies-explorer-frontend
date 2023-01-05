@@ -1,38 +1,58 @@
-import React from "react";
+import { React, useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import { CurrentUserContext } from "../../contexts/CurrentUserContext.js";
 import './MoviesCard.css';
 
 function MoviesCard(props) {
-  const currentUser = React.useContext(CurrentUserContext);
-//   const isSaved = props.movie.saved.some((i) => i._id === currentUser._id);
-    const isSaved = false;
+  const durationOfTheFilmInHours = Math.floor(props.duration/60);
+  const durationOfTheFilm = `${durationOfTheFilmInHours}ч ${props.duration-(durationOfTheFilmInHours*60)}м`;
+
     const { pathname }  = useLocation();
     const movieSaveButtonClassName = `element__save-button ${
-      isSaved ? "element__save-button_active" : ""
+      props.isSaved ? "element__save-button_active" : ""
     }`;
 
-
-  function handleClick() {
-    props.onMovieClick(props.movie);
-  }
-
   const handleSaveClick = () => {
-    props.onCardLike(props.movie);
+    // console.log(props.key, props.card.id)
+    props.onCardLike({
+      country: props.card.country,
+      director: props.card.director,
+      duration: props.card.duration,
+      year: props.card.year,
+      description: props.card.description,
+      image: `https://api.nomoreparties.co/${props.card.image.url}`,
+      trailerLink: props.card.trailerLink,
+      // thumbnail: `https://api.nomoreparties.co/${props.card.image.formats.thumbnail.url}`,
+      thumbnail: `https://api.nomoreparties.co/${props.card.image.url}`,
+      movieId: props.card.id,
+      nameRU: props.nameRU,
+      nameEN: props.card.nameEN,
+      key: props.key,
+    });
   };
 
   const handleDeleteClick = () => {
-    props.onDeleteMovie(props.movie);
+    const isLocationSavedMovies = pathname === "/saved-movies";
+    console.log(isLocationSavedMovies);
+    if (isLocationSavedMovies) {
+      console.log(props.card);
+      props.onDeleteMovie(props.card);
+    } else {
+      const movie = props.userMovies.find(i => {return i.movieId === props.card.id});
+      console.log(movie);
+      props.onDeleteMovie(props.card);
+    }
+    // props.onDeleteMovie(props.card);
   };
 
   return (
     <article className="element" id="element">
-      <img
-        className="element__image"
-        src={`${props.image}`}
-        onClick={() => handleClick()}
-        alt={`${props.nameRU}`}
-      />
+      <a className="element__link" href={props.card.trailerLink} target="blank">
+        <img
+          className="element__image"
+          src={pathname === "/saved-movies" ? props.card.image : `https://api.nomoreparties.co/${props.card.image.url}`}
+          alt={`${props.nameRU}`}
+        />
+      </a>
       <div className="element__info-conteiner">
         <div className="element__text-conteiner">
           <h2 className="element__text">{props.nameRU}</h2>
@@ -46,11 +66,12 @@ function MoviesCard(props) {
             <button
             type="button"
             className={movieSaveButtonClassName}
-            onClick={() => handleSaveClick()}
+            // onClick={() => handleSaveClick()}
+            onClick={props.isSaved ? handleDeleteClick : handleSaveClick}
           ></button>
           )}
         </div>
-        <p className="element__duration">{props.duration}</p>
+        <p className="element__duration">{durationOfTheFilm}</p>
       </div>
     </article>
   );

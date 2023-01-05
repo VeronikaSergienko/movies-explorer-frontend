@@ -5,10 +5,11 @@ import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import SearchForm from '../SearchForm/SearchForm';
 
 function SavedMovies(props) {
+  // console.log(props.allMovies);
   return (
     <>
-      <SearchForm />
-      <MoviesCardList />
+      <SearchForm onSearch={props.onSearch}/>
+      <MoviesCardList allMovies={props.allMovies} userMovies={props.userMovies} onCardLike={props.onCardLike} onDeleteMovie={props.onDeleteMovie}/>
     </>
   );
 }

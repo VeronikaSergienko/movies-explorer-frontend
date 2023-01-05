@@ -1,18 +1,31 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import './SearchForm.css';
 
 function SearchForm({ onSearch }) {
-    const [movieName, setMovieName] = useState("");
+    const { pathname }  = useLocation();
+    const isAllMovies = (pathname === "/movies");
+    const [requestText, setRequestText] = useState("");
     const [isShortFilms, setIsShortFilms] = useState(false);
+    useEffect(() => {
+      if (isAllMovies && localStorage.getItem("isActiveCheckbox") && localStorage.getItem("searchValue")) {
+        const savedSearchValue = JSON.parse(localStorage.getItem("searchValue"));
+        const savedIsActiveCheckbox = JSON.parse(localStorage.getItem("isActiveCheckbox"));
+        setRequestText(savedSearchValue);
+        // setIsValid(true);
+        setIsShortFilms(savedIsActiveCheckbox);
+      }
+    }, [])
   
     function handleChangeMovieName(e) {
-        setMovieName(e.target.value);
+      setRequestText(e.target.value);
     }
   
     function handleSubmit(e) {
       e.preventDefault();
       onSearch({
-        movieName,
+        requestText,
+        isShortFilms,
       });
     }
 
@@ -29,7 +42,7 @@ function SearchForm({ onSearch }) {
                     <input
                     type="text"
                     placeholder="Фильм"
-                    value={movieName}
+                    value={requestText}
                     onChange={handleChangeMovieName}
                     className="search-form__input"
                     minLength="2"
