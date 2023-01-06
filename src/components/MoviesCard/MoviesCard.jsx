@@ -1,18 +1,16 @@
-import { React, useState, useEffect } from "react";
+import { React } from "react";
 import { useLocation } from "react-router-dom";
 import './MoviesCard.css';
 
 function MoviesCard(props) {
   const durationOfTheFilmInHours = Math.floor(props.duration/60);
   const durationOfTheFilm = `${durationOfTheFilmInHours}ч ${props.duration-(durationOfTheFilmInHours*60)}м`;
-
     const { pathname }  = useLocation();
     const movieSaveButtonClassName = `element__save-button ${
       props.isSaved ? "element__save-button_active" : ""
     }`;
 
   const handleSaveClick = () => {
-    // console.log(props.key, props.card.id)
     props.onCardLike({
       country: props.card.country,
       director: props.card.director,
@@ -26,22 +24,17 @@ function MoviesCard(props) {
       movieId: props.card.id,
       nameRU: props.nameRU,
       nameEN: props.card.nameEN,
-      key: props.key,
     });
   };
 
   const handleDeleteClick = () => {
     const isLocationSavedMovies = pathname === "/saved-movies";
-    console.log(isLocationSavedMovies);
     if (isLocationSavedMovies) {
-      console.log(props.card);
       props.onDeleteMovie(props.card);
     } else {
       const movie = props.userMovies.find(i => {return i.movieId === props.card.id});
-      console.log(movie);
-      props.onDeleteMovie(props.card);
+      props.onDeleteMovie(movie);
     }
-    // props.onDeleteMovie(props.card);
   };
 
   return (
@@ -66,7 +59,6 @@ function MoviesCard(props) {
             <button
             type="button"
             className={movieSaveButtonClassName}
-            // onClick={() => handleSaveClick()}
             onClick={props.isSaved ? handleDeleteClick : handleSaveClick}
           ></button>
           )}

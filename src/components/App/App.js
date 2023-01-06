@@ -22,6 +22,8 @@ function App() {
   const [filtredMovies, setFiltredMovies] = useState([]);
   const [userMovies, setUserMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [isErrorMessage, setIsErrorMessage] = useState(false); // есть сообщение об ошибке?
+  const [statusCodeErr, setStatusCodeErr] = useState();
   
   const history = useHistory();
   const location = useLocation();
@@ -52,10 +54,11 @@ function App() {
 
   useEffect(() => {
     if (loggedIn) {
-      Promise.all([mainApi.getUserInfoApi(), mainApi.getInitialMoviesApi()])
-        .then(([profile, userFilms]) => {
+      Promise.all([mainApi.getUserInfoApi(), mainApi.getInitialMoviesApi(), moviesApi.getInitialMoviesApi()])
+        .then(([profile, userFilms, films]) => {
           setCurrentUser(profile);
           setUserMovies(userFilms);
+          setAllMovies(films);
         })
       // history.push("/");
     }
@@ -64,7 +67,6 @@ function App() {
 
   // вход пользователя 
   const handleLogin = ({ email, password }) => {
-    console.log('handleLogin');
     mainApi
     .authorize({ email, password })
     .then((res) => {
@@ -74,7 +76,10 @@ function App() {
       history.push("/movies");
     })
     .catch((err) => {
-      console.log(err);
+      setIsErrorMessage(true);
+      const statusCode = Number(err.slice(6));
+      setStatusCodeErr(statusCode);
+      console.log(err, statusCode);
     });
   };
 
@@ -91,6 +96,9 @@ function App() {
     })
     .catch((err) => {
       console.log(err);
+      setIsErrorMessage(true);
+      const statusCode = Number(err.slice(6));
+      setStatusCodeErr(statusCode);
     });
   };
 
@@ -107,6 +115,9 @@ function App() {
     })
     .catch((err) => {
       console.log(err);
+      setIsErrorMessage(true);
+      const statusCode = Number(err.slice(6));
+      setStatusCodeErr(statusCode);
     });
   };
 
@@ -120,8 +131,7 @@ function App() {
 
     // удаление фильма из сохранённых фильмов юзера
     const handleMovieDelete = (movie) => {
-      console.log(movie);
-      console.log(movie.movieId);
+      // console.log(movie);
       mainApi
         .deleteSavedMovie(movie)
         .then((res) => {
@@ -136,7 +146,6 @@ function App() {
 
   // сохранение фильма в сохранённые фильмы юзера
   const handleMovieSave = (movie) => {
-    // const isSaveMovie = userMovies.find(i => {return i.movieId === movie.id});
     console.log(movie);
     mainApi
       .postMovie(movie)
@@ -193,10 +202,10 @@ function App() {
             <Main />
           </Route>
           <Route exact path="/sign-in">
-            <Login onLogin={handleLogin} />
+            <Login onLogin={handleLogin} isErrorMessage={isErrorMessage} statusCodeErr={statusCodeErr} />
           </Route>
           <Route exact path="/sign-up">
-            <Register onRegister={handleRegistration} />
+            <Register onRegister={handleRegistration} isErrorMessage={isErrorMessage} statusCodeErr={statusCodeErr}/>
           </Route>
           <ProtectedRoute
             exact
@@ -205,6 +214,8 @@ function App() {
             component={Profile}
             onProfile={handleProfile}
             onSignOut={handleSignOut}
+            isErrorMessage={isErrorMessage}
+            statusCodeErr={statusCodeErr}
           />
           <ProtectedRoute
             exact
@@ -216,6 +227,7 @@ function App() {
             onCardLike={handleMovieSave}
             onSearch={handleSearchMovies}
             isLoading={isLoading}
+            onDeleteMovie={handleMovieDelete}
           />
           <ProtectedRoute
             exact

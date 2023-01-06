@@ -29,7 +29,7 @@ function MoviesCardList(props) {
     // устанавливаем количество первоначально подгружаемых карточек и далее при клике на кнопку
     useEffect(() => {
       if (browserWidth >= 1046) {
-        setNumberOfCardsAtTheFirstMounting(4);
+        setNumberOfCardsAtTheFirstMounting(16);
         setNumberOfCardsDuringSubsequentMounting(4);
       }  else if (browserWidth > 800 && browserWidth <= 1046) {
         setNumberOfCardsAtTheFirstMounting(12);
@@ -50,13 +50,10 @@ function MoviesCardList(props) {
 
     function handleTheFirstMountingOfCards() {
       setTheFinalArrayToMount(props.allMovies.slice(0, numberOfCardsAtTheFirstMounting));
-      // console.log(theFinalArrayToMount, props.allMovies, numberOfCardsAtTheFirstMounting)
     }
 
     function handleButtonClickShowMore() {
       const moreCards = props.allMovies.length - theFinalArrayToMount.length;
-      // const quantity = (moreCards > numberOfCardsDuringSubsequentMounting) ? numberOfCardsDuringSubsequentMounting : moreCards;
-      // console.log(quantity);
   
       if (moreCards > 0) {
         const cards = props.allMovies.slice(theFinalArrayToMount.length, theFinalArrayToMount.length + numberOfCardsDuringSubsequentMounting);
@@ -77,7 +74,7 @@ function MoviesCardList(props) {
         return (
           <MoviesCard
             card={movie}
-            key={movie._id}
+            key={movie.id}
             nameRU={movie.nameRU}
             duration={movie.duration}
             onCardLike={props.onCardLike}

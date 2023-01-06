@@ -1,28 +1,39 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext.js";
 import './Profile.css';
 import '../Login/Login.css';
+import useFormWithValidation from "../../hook/useFormWithValidation";
+import ErrorMessage from "../ErrorMessage/ErrorMessage";
 
-function Profile({ onProfile, onSignOut }) {
+function Profile({ onProfile, onSignOut,  isErrorMessage, statusCodeErr }) {
   const currentUser = React.useContext(CurrentUserContext);
-  const [userName, setUserName] = useState("");
-  const [email, setEmail] = useState("");
+  const { values, handleChange, errors, isValid, setIsValid, setValues } = useFormWithValidation();
 
-  function handleChangeName(e) {
-    setUserName(e.target.value);
-  }
-  function handleChangeEmail(e) {
-    setEmail(e.target.value);
-  }
+  useEffect(() => {
+      setValues({
+        userName: currentUser.name,
+        email: currentUser.email
+      })
+  }, [currentUser])
+
+  useEffect(() => {
+    if(currentUser.name === values.userName && currentUser.email === values.email) {
+      setIsValid(false);
+    }
+  }, [isValid, currentUser, values])
 
   function handleSubmit(e) {
     e.preventDefault();
+    if (!values.userName || !values.email) {
+      return;
+    }
     onProfile({
-      name: userName,
-      email,
+      name: values.userName,
+      email: values.email,
     });
   }
+
   return (
       <div className="profile">
         <form className="profile-form" onSubmit={handleSubmit}>
@@ -32,35 +43,38 @@ function Profile({ onProfile, onSignOut }) {
               <p className="profile-form__name-input">Имя</p>
               <input
                 type="text"
+                name="userName"
                 placeholder={currentUser.name}
-                value={userName}
-                onChange={handleChangeName}
+                value={values.userName}
+                onChange={handleChange}
                 className="profile-form__input"
                 minLength="2"
                 maxLength="30"
                 required
               />
             </div>
-            <span className="profile-form__input-error"></span>
+            <span className="profile-form__input-error">{errors.userName || ""}</span>
           </div>
           <div className="profile-form__conteiner profile-form__conteiner_type-without-a-line">
             <div className="profile-form__input-conteiner">
             <p className="profile-form__name-input">E-mail</p>
               <input
-                type="e-mail"
+                type="email"
+                name="email"
                 placeholder={currentUser.email}
-                value={email}
+                value={values.email}
                 // pattern="https?:\/\/[\w/?.&-=]+$"
-                onChange={handleChangeEmail}
+                onChange={handleChange}
                 className="profile-form__input"
                 minLength="2"
                 maxLength="30"
                 required
               />
             </div>
-            <span className="profile-form__input-error"></span>
+            <span className="profile-form__input-error">{errors.email || ""}</span>
           </div>
-          <button type="submit" className="profile-form__save-button">
+          <ErrorMessage isErrorMessage={isErrorMessage} statusCodeErr={statusCodeErr} />
+          <button type="submit" className="profile-form__save-button" disabled={!isValid}>
             Редактировать
           </button>
         </form>

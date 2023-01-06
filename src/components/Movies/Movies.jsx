@@ -6,7 +6,6 @@ import Preloader from '../Preloader/Preloader';
 
 
 function Movies(props) {
-  // console.log(props.allMovies);
   return (
     <>
       <SearchForm onSearch={props.onSearch} />
@@ -15,8 +14,7 @@ function Movies(props) {
             allMovies={props.allMovies} 
             userMovies={props.userMovies} 
             onCardLike={props.onCardLike} 
-            onDeleteMovie={props.onDeleteMovie} 
-            isNoMovies={false}/>)
+            onDeleteMovie={props.onDeleteMovie}/>)
             }
     </>
   );
