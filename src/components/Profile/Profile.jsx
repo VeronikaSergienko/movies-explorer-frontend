@@ -45,7 +45,7 @@ function Profile({ onProfile, onSignOut,  isErrorMessage, statusCodeErr }) {
                 type="text"
                 name="userName"
                 placeholder={currentUser.name}
-                value={values.userName}
+                value={values.userName || ""}
                 onChange={handleChange}
                 className="profile-form__input"
                 minLength="2"
@@ -62,7 +62,7 @@ function Profile({ onProfile, onSignOut,  isErrorMessage, statusCodeErr }) {
                 type="email"
                 name="email"
                 placeholder={currentUser.email}
-                value={values.email}
+                value={values.email || ""}
                 // pattern="https?:\/\/[\w/?.&-=]+$"
                 onChange={handleChange}
                 className="profile-form__input"

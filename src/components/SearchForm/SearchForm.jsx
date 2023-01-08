@@ -6,13 +6,16 @@ function SearchForm({ onSearch }) {
     const { pathname }  = useLocation();
     const isAllMovies = (pathname === "/movies");
     const [requestText, setRequestText] = useState("");
-    const [isShortFilms, setIsShortFilms] = useState(false);
+    const infoIsShotFilms = isAllMovies ? JSON.parse(localStorage.getItem("isActiveCheckbox")) : false;
+
+    const [isShortFilms, setIsShortFilms] = useState(infoIsShotFilms);
+
     useEffect(() => {
+      console.log(JSON.parse(localStorage.getItem("isActiveCheckbox")), isShortFilms);
       if (isAllMovies && localStorage.getItem("isActiveCheckbox") && localStorage.getItem("searchValue")) {
         const savedSearchValue = JSON.parse(localStorage.getItem("searchValue"));
         const savedIsActiveCheckbox = JSON.parse(localStorage.getItem("isActiveCheckbox"));
         setRequestText(savedSearchValue);
-        // setIsValid(true);
         setIsShortFilms(savedIsActiveCheckbox);
       }
     }, [])
@@ -29,8 +32,17 @@ function SearchForm({ onSearch }) {
       });
     }
 
+    function handleSubmitCheckbox() {
+      onSearch({ requestText, isShortFilms });
+    }
+
     function toggleCheckbox() {
-      setIsShortFilms(!isShortFilms);
+      const newValue = !isShortFilms;
+      console.log(newValue)
+      localStorage.setItem("isActiveCheckbox", JSON.stringify(!isShortFilms));
+      setIsShortFilms(newValue);
+      console.log(isShortFilms)
+      handleSubmitCheckbox();
     };
     
   return (

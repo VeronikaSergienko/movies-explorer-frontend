@@ -43,21 +43,34 @@ function MoviesCardList(props) {
       }
     }, [browserWidth, props.allMovies]);
 
+    // useEffect(() => {
+    //   handleTheFirstMountingOfCards();
+    //   setIsNoCards(props.allMovies.length < theFinalArrayToMount.length);
+    // }, [browserWidth, props.allMovies])
+
     useEffect(() => {
-      handleTheFirstMountingOfCards();
-      setIsNoCards(props.allMovies.length < theFinalArrayToMount.length);
+      if (props.allMovies.length > 0) {
+        handleTheFirstMountingOfCards();
+        setIsNoCards(props.allMovies.length < theFinalArrayToMount.length);
+      }
+      // handleTheFirstMountingOfCards();
+      // setIsNoCards(true);
     }, [browserWidth, props.allMovies])
 
     function handleTheFirstMountingOfCards() {
-      setTheFinalArrayToMount(props.allMovies.slice(0, numberOfCardsAtTheFirstMounting));
+        setTheFinalArrayToMount(props.allMovies.slice(0, numberOfCardsAtTheFirstMounting));      
     }
 
     function handleButtonClickShowMore() {
       const moreCards = props.allMovies.length - theFinalArrayToMount.length;
+      console.log(moreCards)
   
       if (moreCards > 0) {
         const cards = props.allMovies.slice(theFinalArrayToMount.length, theFinalArrayToMount.length + numberOfCardsDuringSubsequentMounting);
         setTheFinalArrayToMount([...theFinalArrayToMount, ...cards]);
+        const remains = props.allMovies.length - theFinalArrayToMount.length;
+        console.log(remains, cards)
+        if (remains === cards.length) {setIsNoCards(true)}
       } else {
         setIsNoCards(true);
       }

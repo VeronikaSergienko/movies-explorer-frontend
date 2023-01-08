@@ -14,6 +14,7 @@ import SavedMovies from "../SavedMovies/SavedMovies";
 import Footer from '../Footer/Footer';
 import PageNotFound from '../PageNotFound/PageNotFound';
 import ProtectedRoute from '../ProtectedRoute';
+import InfoTooltip from '../InfoTooltip/InfoTooltip';
 
 function App() {
   const [currentUser, setCurrentUser] = useState({});
@@ -24,10 +25,17 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [isErrorMessage, setIsErrorMessage] = useState(false); // есть сообщение об ошибке?
   const [statusCodeErr, setStatusCodeErr] = useState();
+  const [isInfoPopupOpen, setInfoPopupOpen] = useState(false);
   
   const history = useHistory();
   const location = useLocation();
   const locationPageMovies = location.pathname === '/movies';
+
+  useEffect(() => {
+    if ((location.pathname === "/sign-in" || location.pathname === "/sign-up") && loggedIn) {
+      history.push("/movies");
+    }
+  }, [loggedIn, history, location.pathname]);
 
   const auth = async (jwt) => {
     mainApi
@@ -37,7 +45,7 @@ function App() {
           // console.log(res);
           setLoggedIn(true);
           setCurrentUser(res);
-          // history.push("/");
+          history.push(location.pathname);
         }
       })
       .catch((err) => {
@@ -60,9 +68,24 @@ function App() {
           setUserMovies(userFilms);
           setAllMovies(films);
         })
+        .catch((err) => {
+          console.log(err);
+        });
       // history.push("/");
     }
   }, [loggedIn, locationPageMovies]);
+
+
+
+  useEffect(() => {
+    if (locationPageMovies && localStorage.getItem("filtredMovies")) {
+      const savedMovies = JSON.parse(localStorage.getItem("filtredMovies"));
+      // console.log(savedMovies);
+      setFiltredMovies(savedMovies);
+    }
+  }, [locationPageMovies])
+
+
 
 
   // вход пользователя 
@@ -91,7 +114,8 @@ function App() {
     .then((res) => {
       if (res) {
         console.log(res);
-        history.push("/sign-in");
+        handleLogin({ email, password });
+        // history.push("/sign-in");
       }
     })
     .catch((err) => {
@@ -110,6 +134,7 @@ function App() {
     .then((res) => {
       if (res) {
         setCurrentUser(res);
+        setInfoPopupOpen(true);
         console.log(res);
       }
     })
@@ -127,6 +152,9 @@ function App() {
     setLoggedIn(false);
     setAllMovies([]);
     localStorage.removeItem("jwt");
+    localStorage.removeItem("isActiveCheckbox");
+    localStorage.removeItem("searchValue");
+    localStorage.removeItem("filtredMovies");
   };
 
     // удаление фильма из сохранённых фильмов юзера
@@ -160,9 +188,12 @@ function App() {
   // обработка клика по поиску фильмов
   const handleSearchMovies = ({ requestText, isShortFilms }) => {
     setIsLoading(true);
+    console.log(isShortFilms)
     localStorage.setItem("searchValue", JSON.stringify(requestText));
-    localStorage.setItem("isActiveCheckbox", JSON.stringify(isShortFilms));
+    // localStorage.setItem("isActiveCheckbox", JSON.stringify(isShortFilms));
+    const savedIsActiveCheckbox = JSON.parse(localStorage.getItem("isActiveCheckbox"));
     if (allMovies.length === 0) {
+      console.log("нет фильмов")
       moviesApi.getInitialMoviesApi()
       .then((films) => {
         setAllMovies(films);
@@ -173,10 +204,13 @@ function App() {
         const shotMovies = foundMovies.filter((m) => {
           return m.duration < 40
         })
-        const finalMovies = (isShortFilms) ? shotMovies : foundMovies;
+        const finalMovies = (savedIsActiveCheckbox) ? shotMovies : foundMovies;
         setFiltredMovies(finalMovies);
         setIsLoading(false);
       })
+      .catch((err) => {
+        console.log(err);
+      });
 
     } else {
       const foundMovies = allMovies.filter((m) => {
@@ -186,11 +220,18 @@ function App() {
       const shotMovies = foundMovies.filter((m) => {
         return m.duration < 40
       })
-      const finalMovies = (isShortFilms) ? shotMovies : foundMovies;
+      const finalMovies = (savedIsActiveCheckbox) ? shotMovies : foundMovies;
+      localStorage.setItem("filtredMovies", JSON.stringify(finalMovies));
+      localStorage.setItem("isActiveCheckbox", JSON.stringify(savedIsActiveCheckbox));
       setFiltredMovies(finalMovies);
+      console.log(isShortFilms)
       setIsLoading(false);
     }
   };
+
+  const clousePopup = () => {
+    setInfoPopupOpen(false);
+  }
 
 
   return (
@@ -243,6 +284,8 @@ function App() {
           </Route>
         </Switch>
         <Footer />
+
+        <InfoTooltip isOpen={isInfoPopupOpen} onClose={clousePopup} />
       </div>
     </CurrentUserContext.Provider>
   );
