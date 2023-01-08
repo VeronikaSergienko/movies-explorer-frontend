@@ -43,18 +43,11 @@ function MoviesCardList(props) {
       }
     }, [browserWidth, props.allMovies]);
 
-    // useEffect(() => {
-    //   handleTheFirstMountingOfCards();
-    //   setIsNoCards(props.allMovies.length < theFinalArrayToMount.length);
-    // }, [browserWidth, props.allMovies])
-
     useEffect(() => {
       if (props.allMovies.length > 0) {
         handleTheFirstMountingOfCards();
         setIsNoCards(props.allMovies.length < theFinalArrayToMount.length);
       }
-      // handleTheFirstMountingOfCards();
-      // setIsNoCards(true);
     }, [browserWidth, props.allMovies])
 
     function handleTheFirstMountingOfCards() {

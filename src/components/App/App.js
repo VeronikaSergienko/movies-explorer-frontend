@@ -73,7 +73,7 @@ function App() {
         });
       // history.push("/");
     }
-  }, [loggedIn, locationPageMovies]);
+  }, [loggedIn]);
 
 
 
@@ -232,7 +232,6 @@ function App() {
   const clousePopup = () => {
     setInfoPopupOpen(false);
   }
-
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
