@@ -1,23 +1,48 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import './SearchForm.css';
 
 function SearchForm({ onSearch }) {
-    const [movieName, setMovieName] = useState("");
-    const [isShortFilms, setIsShortFilms] = useState(false);
+    const { pathname }  = useLocation();
+    const isAllMovies = (pathname === "/movies");
+    const [requestText, setRequestText] = useState("");
+    const infoIsShotFilms = isAllMovies ? JSON.parse(localStorage.getItem("isActiveCheckbox")) : false;
+
+    const [isShortFilms, setIsShortFilms] = useState(infoIsShotFilms);
+
+    useEffect(() => {
+      console.log(JSON.parse(localStorage.getItem("isActiveCheckbox")), isShortFilms);
+      if (isAllMovies && localStorage.getItem("isActiveCheckbox") && localStorage.getItem("searchValue")) {
+        const savedSearchValue = JSON.parse(localStorage.getItem("searchValue"));
+        const savedIsActiveCheckbox = JSON.parse(localStorage.getItem("isActiveCheckbox"));
+        setRequestText(savedSearchValue);
+        setIsShortFilms(savedIsActiveCheckbox);
+      }
+    }, [])
   
     function handleChangeMovieName(e) {
-        setMovieName(e.target.value);
+      setRequestText(e.target.value);
     }
   
     function handleSubmit(e) {
       e.preventDefault();
       onSearch({
-        movieName,
+        requestText,
+        isShortFilms,
       });
     }
 
+    function handleSubmitCheckbox() {
+      onSearch({ requestText, isShortFilms });
+    }
+
     function toggleCheckbox() {
-      setIsShortFilms(!isShortFilms);
+      const newValue = !isShortFilms;
+      console.log(newValue)
+      localStorage.setItem("isActiveCheckbox", JSON.stringify(!isShortFilms));
+      setIsShortFilms(newValue);
+      console.log(isShortFilms)
+      handleSubmitCheckbox();
     };
     
   return (
@@ -29,7 +54,7 @@ function SearchForm({ onSearch }) {
                     <input
                     type="text"
                     placeholder="Фильм"
-                    value={movieName}
+                    value={requestText}
                     onChange={handleChangeMovieName}
                     className="search-form__input"
                     minLength="2"

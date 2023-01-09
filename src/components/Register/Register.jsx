@@ -1,31 +1,34 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-import headerLogo from "../../images/logo.svg";
 import '../Login/Login.css';
 import '../Header/Header.css';
+import useFormWithValidation from "../../hook/useFormWithValidation";
+import ErrorMessage from "../ErrorMessage/ErrorMessage";
 
-function Register({ onRegister }) {
-  const [userName, setUserName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+function Register({ onRegister, isErrorMessage, statusCodeErr }) {
+  const { values, handleChange, errors, isValid, resetForm } = useFormWithValidation();
 
-  function handleChangeName(e) {
-    setUserName(e.target.value);
-  }
-  function handleChangeEmail(e) {
-    setEmail(e.target.value);
-  }
-  function handleChangePassword(e) {
-    setPassword(e.target.value);
-  }
+  useEffect(() => {
+    resetForm(
+      {
+        userName: "",
+        email: "",
+        password: "",
+      },
+      {},
+      false
+    );
+  }, []);
 
   function handleSubmit(e) {
     e.preventDefault();
-    // Передаём значения управляемых компонентов во внешний обработчик
+    if (!values.userName || !values.email || !values.password) {
+      return;
+    }
     onRegister({
-      userName,
-      email,
-      password,
+      name: values.userName,
+      email: values.email,
+      password: values.password,
     });
   }
   return (
@@ -38,41 +41,45 @@ function Register({ onRegister }) {
           <p className="form__input-name">Имя</p>
             <input
               type="text"
-              value={userName}
-              onChange={handleChangeName}
+              value={values.userName || ""}
+              name="userName"
+              onChange={handleChange}
               className="form__input"
               minLength="2"
               maxLength="30"
               required
             />
-            <span className="form__input-error"></span>
+            <span className="form__input-error">{errors.userName || ""}</span>
           </div>
           <div className="form__input-conteiner">
             <p className="form__input-name">E-mail</p>
             <input
               type="e-mail"
-              value={email}
-              pattern="https?:\/\/[\w/?.&-=]+$"
-              onChange={handleChangeEmail}
+              value={values.email || ""}
+              name="email"
+              // pattern="https?:\/\/[\w/?.&-=]+$"
+              onChange={handleChange}
               className="form__input"
               minLength="2"
               maxLength="30"
               required
             />
-            <span className="form__input-error"></span>
+            <span className="form__input-error">{errors.email || ""}</span>
           </div>
           <div className="form__input-conteiner">
             <p className="form__input-name">Пароль</p>
             <input
               type="password"
-              value={password}
-              onChange={handleChangePassword}
+              name="password"
+              value={values.password || ""}
+              onChange={handleChange}
               className="form__input"
               required
             />
-            <span className="form__input-error"></span>
+            <span className="form__input-error">{errors.password || ""}</span>
           </div>
-          <button type="submit" className="form__save-button">
+          <ErrorMessage isErrorMessage={isErrorMessage} statusCodeErr={statusCodeErr} />
+          <button type="submit" className="form__save-button" disabled={!isValid}>
             Зарегистрироваться
           </button>
         </form>

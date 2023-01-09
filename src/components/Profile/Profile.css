@@ -117,6 +117,13 @@
     line-height: 17px;
 }
 
+.profile-form__input-error {
+    color: #EE3465;
+    font-size: 10px;
+    line-height: 12px;
+    text-align: start;
+}
+
 @media screen and (max-width: 1046px) {
     .profile {
         margin-top: 236px;

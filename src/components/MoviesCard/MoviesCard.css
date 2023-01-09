@@ -18,6 +18,8 @@
     font-weight: 500;
     margin: 0;
     padding: 0;
+    text-align: start;
+    max-width: 80%;
 }
 .element__duration {
     font-size: 11px;
