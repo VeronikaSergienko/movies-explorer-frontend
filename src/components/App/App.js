@@ -30,6 +30,7 @@ function App() {
   const history = useHistory();
   const location = useLocation();
   const locationPageMovies = location.pathname === '/movies';
+  const locationPageUserMovies = location.pathname === '/saved-movies';
 
   useEffect(() => {
     if ((location.pathname === "/sign-in" || location.pathname === "/sign-up") && loggedIn) {
@@ -66,6 +67,7 @@ function App() {
         .then(([profile, userFilms, films]) => {
           setCurrentUser(profile);
           setUserMovies(userFilms);
+          localStorage.setItem("userMovies", JSON.stringify(userFilms));
           setAllMovies(films);
         })
         .catch((err) => {
@@ -84,6 +86,14 @@ function App() {
       setFiltredMovies(savedMovies);
     }
   }, [locationPageMovies])
+
+  useEffect(() => {
+    if (locationPageUserMovies && localStorage.getItem("userMovies")) {
+      const savedUserMovies = JSON.parse(localStorage.getItem("userMovies"));
+      // console.log(savedMovies);
+      setUserMovies(savedUserMovies);
+    }
+  }, [locationPageUserMovies])
 
 
 
@@ -166,6 +176,7 @@ function App() {
           setUserMovies((userMovies) => 
             userMovies.filter((m) => !(m.movieId === movie.movieId))
           );
+          localStorage.setItem("userMovies", JSON.stringify(userMovies.filter((m) => !(m.movieId === movie.movieId))));
         })
         .catch((err) => {
           console.log(err);
@@ -179,6 +190,7 @@ function App() {
       .postMovie(movie)
       .then((savedMovie) => {
         setUserMovies([...userMovies, savedMovie]);
+        localStorage.setItem("userMovies", JSON.stringify([...userMovies, savedMovie]));
       })
       .catch((err) => {
         console.log(err);

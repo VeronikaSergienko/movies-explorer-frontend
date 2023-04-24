@@ -1,5 +1,5 @@
 const { NODE_ENV } = process.env;
-const BASE_URL = NODE_ENV === 'development' ? 'http://localhost:4000' : 'https://api.movies.vss.nomoredomains.icu/';
+const BASE_URL = NODE_ENV === 'development' ? 'http://localhost:6666' : 'https://api.vss.students.nomoredomains.monster/';
 
 class MainApi {
   constructor({ baseUrl, headers }) {
@@ -106,8 +106,8 @@ class MainApi {
 }
 
 export const mainApi = new MainApi({
-  baseUrl: 'https://api.movies.vss.nomoredomains.icu/',
-//   baseUrl: 'http://localhost:4000/',
+  baseUrl: 'https://api.vss.students.nomoredomains.monster/',
+//   baseUrl: 'http://localhost:6666/',
   headers: {
     "Content-Type": "application/json",
   },

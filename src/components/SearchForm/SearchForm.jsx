@@ -11,7 +11,7 @@ function SearchForm({ onSearch }) {
     const [isShortFilms, setIsShortFilms] = useState(infoIsShotFilms);
 
     useEffect(() => {
-      console.log(JSON.parse(localStorage.getItem("isActiveCheckbox")), isShortFilms);
+      // console.log(JSON.parse(localStorage.getItem("isActiveCheckbox")), isShortFilms);
       if (isAllMovies && localStorage.getItem("isActiveCheckbox") && localStorage.getItem("searchValue")) {
         const savedSearchValue = JSON.parse(localStorage.getItem("searchValue"));
         const savedIsActiveCheckbox = JSON.parse(localStorage.getItem("isActiveCheckbox"));
